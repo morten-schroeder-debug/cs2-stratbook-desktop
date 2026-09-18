@@ -1,0 +1,47 @@
+{
+  "name": "cs2-stratbook-desktop",
+  "version": "1.0.0",
+  "description": "Offline CS2 Stratbook für Windows mit 196 Taktiken und StratPack-Import.",
+  "main": "main.js",
+  "author": "Morten",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "36.4.0",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "de.cs2.stratbook.desktop",
+    "productName": "CS2 Stratbook",
+    "asar": true,
+    "files": [
+      "main.js",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "data/**/*"
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "artifactName": "CS2-Stratbook-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CS2 Stratbook",
+      "artifactName": "CS2-Stratbook-Setup-${version}-${arch}.${ext}"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

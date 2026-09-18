@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;" />
+  <title>CS2 Stratbook</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">CS2</div>
+        <div>
+          <h1>CS2 STRATBOOK</h1>
+          <div id="subtitle" class="subtitle">Lade Stratbook …</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="packButton" class="button secondary">📦 StratPack</button>
+        <button id="resetButton" class="button ghost" title="Filter zurücksetzen">↺ Filter</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section>
+          <div class="section-label">MAP</div>
+          <div id="mapButtons" class="button-grid"></div>
+        </section>
+        <section>
+          <div class="section-label">SEITE</div>
+          <div id="sideButtons" class="side-buttons"></div>
+        </section>
+        <section>
+          <div class="section-label">SUCHE</div>
+          <input id="searchInput" class="search" type="search" placeholder="Strat, Trigger, Setup, Utility …" />
+        </section>
+        <section>
+          <div class="section-label">BEREICH / TAG</div>
+          <div id="areaButtons" class="chips"></div>
+        </section>
+        <section>
+          <div class="section-label">RUNDENTYP / SITUATION</div>
+          <div id="roundButtons" class="chips"></div>
+        </section>
+      </aside>
+
+      <section class="content">
+        <div class="content-head">
+          <div>
+            <div id="viewTitle" class="view-title">Inferno · T</div>
+            <div id="countText" class="count-text"></div>
+          </div>
+          <div class="legend">
+            <span><i class="dot trigger"></i> Trigger</span>
+            <span><i class="dot utility"></i> Utility</span>
+            <span><i class="dot planb"></i> Plan B</span>
+          </div>
+        </div>
+        <div id="cards" class="cards"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div id="modal" class="modal" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close" aria-label="Schließen">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <input id="fileInput" type="file" accept="application/json,.json" hidden />
+  <script src="renderer.js"></script>
+</body>
+</html>
