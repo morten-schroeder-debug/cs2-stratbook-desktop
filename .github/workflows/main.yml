@@ -1,0 +1,38 @@
+name: Build Windows App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Abhängigkeiten installieren
+        run: npm install
+
+      - name: Strat-Datei vorbereiten
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path data
+          Copy-Item strategies.json data/strategies.json
+
+      - name: Windows EXE bauen
+        run: npm run dist
+
+      - name: EXE-Dateien bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: CS2-Stratbook-Windows
+          path: dist/*.exe
